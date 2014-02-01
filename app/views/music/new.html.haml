@@ -1,11 +1,5 @@
 :javascript
   $(function(){
-    $('#play').on('click', function(){
-      playMusic();
-    });
-    $('#pause').on('click', function(){
-      pauseMusic();
-    });
 
     var music = function(){
       var freqs = T(function(count) {
@@ -26,6 +20,11 @@
       console.log('music!');
       music();
     };
+
+    // Events
+    $('#play').on('click', function(){
+      playMusic();
+    });
   });
 
 %h1 Mathematical Music
