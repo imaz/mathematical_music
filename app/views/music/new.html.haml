@@ -7,11 +7,24 @@
       pauseMusic();
     });
 
-    var t = T('sin');
-    var playMusic = function(){
-      console.log('t!');
-      t.play();
+    var music = function(){
+      var freqs = T(function(count) {
+        return [220, 440, 660, 880][count % 4];
+      });
+
+      var osc = T("sin", {freq:freqs, mul:0.5});
+      var env = T("perc", {a:50, r:500}, osc).bang();
+
+      var interval = T("param", {value:500});
+
+      T("interval", {interval:interval}, freqs, env).start();
+
+      env.play();
     };
+
+    var playMusic = function(){
+      console.log('music!');
+      music();
     };
   });
 
