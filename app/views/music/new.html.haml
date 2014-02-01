@@ -11,7 +11,7 @@
         return numbers_hz[count];
       });
 
-      var osc = T("sin", {freq:freqs, mul: 0.5});
+      var osc = T("sin", {freq: freqs, mul: 0.5, wave: "fami"});
       var env = T("perc", {a: 50, r: 500}, osc).bang();
 
       var interval = T("param", {value: INTERVAL});
