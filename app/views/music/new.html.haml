@@ -3,7 +3,7 @@
     // シドレミファソラシドレ
     const SCALE = [246.94, 261.62, 293.66, 329.62, 349.22, 391.99, 440.0, 493.88, 523.25, 587.32]
 
-    var music = function(){
+    var playMusic = function(){
       var freqs = T(function(count) {
         return SCALE[count];
       });
@@ -20,13 +20,9 @@
       }).set({buddies: env}).start();
     };
 
-    var playMusic = function(){
-      console.log('music!');
-      music();
-    };
-
     // Events
     $('#play').on('click', function(){
+      console.log('music!');
       playMusic();
     });
   });
