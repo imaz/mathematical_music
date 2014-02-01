@@ -11,11 +11,13 @@
       var osc = T("sin", {freq:freqs, mul:0.5});
       var env = T("perc", {a:50, r:500}, osc).bang();
 
-      var interval = T("param", {value:500});
+      var interval = T("param", {value:250});
 
       T("interval", {interval:interval}, freqs, env).start();
 
-      env.play();
+      T("timeout", {timeout:250 * SCALE.length}).on("ended", function() {
+        this.stop();
+      }).set({buddies:env}).start();
     };
 
     var playMusic = function(){
