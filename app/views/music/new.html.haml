@@ -4,8 +4,10 @@
     const SCALE = [246.94, 261.62, 293.66, 329.62, 349.22, 391.99, 440.0, 493.88, 523.25, 587.32]
 
     var playMusic = function(){
-      var freqs = T(function(count) {
-        return SCALE[count];
+      var numbers_hz = numbersArrayToHz();
+
+      var freqs = T(function(count){
+        return numbers_hz[count];
       });
 
       var osc = T("sin", {freq:freqs, mul: 0.5});
@@ -15,9 +17,25 @@
 
       T("interval", {interval: interval}, freqs, env).start();
 
-      T("timeout", {timeout: 250 * SCALE.length}).on("ended", function() {
+      T("timeout", {timeout: 250 * numbers_hz.length}).on("ended", function() {
         this.stop();
       }).set({buddies: env}).start();
+    };
+
+    var numbersArrayToHz = function(){
+      var numbers_array = numbersArray();
+
+      var freqs = numbers_array.map(function(num){
+        var freq = SCALE[num] != undefined ? SCALE[num] : 0;
+        return freq;
+      });
+
+      return freqs;
+    }
+
+    // Views
+    var numbersArray = function(){
+      return $('#numbers').val().split('');
     };
 
     // Events
@@ -28,5 +46,7 @@
   });
 
 %h1 Mathematical Music
+.numbers
+  = text_area_tag :numbers
 .buttons
   = button_tag 'Play', id: 'play'
