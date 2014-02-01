@@ -1,11 +1,21 @@
 :javascript
   $(function(){
     $('#play').on('click', function(){
-      console.log('play');
+      playMusic();
     });
     $('#pause').on('click', function(){
-      console.log('pause');
+      pauseMusic();
     });
+
+    var t = T('sin');
+    var playMusic = function(){
+      console.log('t!');
+      t.play();
+    };
+    var pauseMusic = function(){
+      console.log('t...');
+      t.pause();
+    };
   });
 
 %h1 Mathematical Music
