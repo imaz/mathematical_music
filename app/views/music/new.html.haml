@@ -1,9 +1,11 @@
 :javascript
   $(function(){
+    // シドレミファソラシドレ
+    const SCALE = [246.94, 261.62, 293.66, 329.62, 349.22, 391.99, 440.0, 493.88, 523.25, 587.32]
 
     var music = function(){
       var freqs = T(function(count) {
-        return [220, 440, 660, 880][count % 4];
+        return SCALE[count];
       });
 
       var osc = T("sin", {freq:freqs, mul:0.5});
