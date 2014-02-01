@@ -1,2 +1,14 @@
-%h1 Music#new
-%p Find me in app/views/music/new.html.haml
+:javascript
+  $(function(){
+    $('#play').on('click', function(){
+      console.log('play');
+    });
+    $('#pause').on('click', function(){
+      console.log('pause');
+    });
+  });
+
+%h1 Mathematical Music
+.buttons
+  = button_tag 'Play', id: 'play'
+  = button_tag 'Pause', id: 'pause'
